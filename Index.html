@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CRS Demo — Espectro & Sinais Temporais</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>CRS Demo — Espectro & Sinais Temporais</h1>
+    <p class="sub">Demo local (navegador). Capta microfone, desenha espectrograma e calcula sinais de ritmo.</p>
+  </header>
+
+  <main class="grid">
+    <section class="card">
+      <h2>Controles</h2>
+      <div class="row">
+        <button id="btnStart">Iniciar Microfone</button>
+        <button id="btnStop" disabled>Parar</button>
+      </div>
+
+      <div class="row">
+        <label>Threshold de pausa (RMS)</label>
+        <input id="thr" type="range" min="0.001" max="0.05" step="0.001" value="0.01"/>
+        <span id="thrVal">0.010</span>
+      </div>
+
+      <div class="row">
+        <label>Velocidade do espectrograma</label>
+        <input id="speed" type="range" min="1" max="8" step="1" value="3"/>
+        <span id="speedVal">3</span>
+      </div>
+
+      <div class="row">
+        <label>Upload de áudio (opcional)</label>
+        <input id="file" type="file" accept="audio/*"/>
+      </div>
+
+      <p class="note">
+        Observação: microfone só funciona em HTTPS (GitHub Pages) ou em <b>localhost</b>.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Espectrograma (tempo real)</h2>
+      <canvas id="spec" width="900" height="300"></canvas>
+      <div class="legend">
+        <span>Graves</span><span>Médios</span><span>Agudos</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Leitura CRS (v0.1)</h2>
+      <div class="metrics">
+        <div class="m"><span>Ritmo (pausas/min)</span><b id="mRate">—</b></div>
+        <div class="m"><span>Tempo médio de pausa</span><b id="mPause">—</b></div>
+        <div class="m"><span>Intensidade (RMS)</span><b id="mRms">—</b></div>
+        <div class="m"><span>Estabilidade do tom (Hz)</span><b id="mPitch">—</b></div>
+        <div class="m"><span>Variação espectral</span><b id="mCentroid">—</b></div>
+        <div class="m"><span>Estado operacional</span><b id="mState">—</b></div>
+      </div>
+      <p class="note">
+        Aqui é “sinal observável”. Sem diagnosticar, sem rotular emoção. Só espelho técnico.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <small>ELAYON / CRS Demo — versão base para evoluir.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
